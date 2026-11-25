@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#19cc67">
+  <meta name="description" content="Clickable UX prototype — Anywheel Pay Per Ride concept for dX330, standard bicycles only.">
+  <title>Anywheel · Pay Per Ride Concept Prototype</title>
+  <style>
+    :root{--green:#19cc67;--deep:#08b85c;--mint:#e8faef;--ink:#343c76;--text:#2c355f;--muted:#858ba0;--line:#e5e8f2;--surface:#f8f9fc;--dark:#101820;--radius:20px;--shadow:0 14px 34px rgba(25,45,70,.10)}
+    *,*::before,*::after{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Thai','Thonburi','Noto Sans Thai',system-ui,'Leelawadee UI',Tahoma,Arial,sans-serif;color:var(--text)}
+    body{background:radial-gradient(circle at 15% 6%,#d7fae5 0,transparent 31%),radial-gradient(circle at 87% 87%,#e4eeff 0,transparent 33%),#edf3f2}button,input{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:3px solid rgba(22,207,108,.42);outline-offset:3px}button:disabled{cursor:not-allowed;opacity:.42}
+    .layout{width:min(100%,600px);margin:auto;display:grid;grid-template-columns:420px;justify-content:center;align-items:center;min-height:100vh;padding:24px 24px}
+    .left{display:none}.eyebrow{font-size:11px;font-weight:850;letter-spacing:2.2px;color:#079655;margin:0 0 24px;text-transform:uppercase}.left h1{margin:0;color:#192844;font-size:clamp(34px,3vw,52px);line-height:1.22;letter-spacing:-1.6px}.left h1 span{color:#08b863}.left p{line-height:1.85;color:#596879;font-size:14px}.research{background:#fff;padding:18px 20px;border-radius:19px;margin-top:25px;border:1px solid #dfe9e6;box-shadow:0 12px 32px #263e3410}.research strong{color:#1c3442;font-size:13px}.research p{font-size:12px;margin:8px 0 0}.research em{font-style:normal;color:#118c5a;font-weight:750}.factline{display:flex;align-items:center;gap:8px;font-size:12px;color:#416153;margin-top:18px}.factline i{height:7px;width:7px;background:var(--green);border-radius:50%}
+    .phone-shell{width:420px;height:min(892px,calc(100vh - 48px));min-height:745px;background:#fff;border:7px solid #18232a;border-radius:48px;box-shadow:0 34px 75px #132b3050,0 7px 0 #1d3037;overflow:hidden;position:relative;display:flex;flex-direction:column}.phone-shell::before{display:none}.status{height:38px;flex:none;padding:6px 23px 0 23px;display:flex;align-items:center;justify-content:space-between;background:#fff;color:var(--ink);font-size:16px;font-weight:700;letter-spacing:-.4px;position:relative;z-index:4}.status.dark{background:#101820;color:#fff}.status-icon{display:flex;gap:7px;align-items:center}.status-time{display:flex;gap:5px;align-items:center}.status-icon svg{width:17px;height:15px;display:block;fill:currentColor}.status-icon .wifi-mark{width:20px;height:15px}.status-icon .battery-mark{width:27px;height:14px}.status-time .location-glyph{width:16px;height:17px;fill:currentColor}.status-time .moon-glyph{width:14px;height:15px;fill:currentColor}.mini-signal{display:inline-block;width:13px;height:9px;background:linear-gradient(to right,currentColor 25%,transparent 25% 36%,currentColor 36% 62%,transparent 62% 72%,currentColor 72%);clip-path:polygon(0 100%,0 60%,27% 60%,27% 35%,60% 35%,60% 15%,100% 15%,100% 100%)}.battery{height:9px;width:17px;border-radius:2px;border:1.5px solid currentColor;position:relative;display:inline-block}.battery::after{content:'';position:absolute;left:2px;top:2px;width:11px;height:3px;background:currentColor;border-radius:1px}.battery::before{content:'';position:absolute;right:-4px;top:2px;width:2px;height:3px;background:currentColor}.screen-root{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden;background:white}.screen-body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}.screen-body::-webkit-scrollbar{display:none}.screen-head{padding:11px 20px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-bottom:1px solid #f1f2f6;min-height:59px;flex:none}.head-title{font-size:15px;font-weight:850;color:var(--ink);text-align:center;flex:1}.round-btn{border:1px solid #e7ebf1;background:white;border-radius:50%;width:37px;height:37px;display:grid;place-items:center;color:var(--ink);box-shadow:0 3px 12px #24304709}.round-btn svg{width:19px;height:19px}.head-spacer{width:37px}.proto-tag{border-radius:100px;background:#effaf4;color:#069c52;font-size:9px;font-weight:850;padding:5px 8px;white-space:nowrap}
+    .icon{height:20px;width:20px;display:inline-block;vertical-align:middle;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linejoin:round;stroke-linecap:round}.icon.sm{width:15px;height:15px}.icon.lg{width:25px;height:25px}.icon.xl{width:36px;height:36px}.muted{color:var(--muted)}.small{font-size:12px;line-height:1.65}.tiny{font-size:10px;line-height:1.55}.section-title{font-size:17px;color:var(--ink);font-weight:850;margin:0}.padded{padding:20px 19px 24px}.section-overline{color:#08a65b;text-transform:uppercase;letter-spacing:1.4px;font-weight:850;font-size:10px;margin:0 0 8px}.subtext{color:#818b9a;font-size:12px;line-height:1.8;margin:6px 0 0}.padded>h2{margin:0;color:var(--ink);font-size:23px;line-height:1.38;letter-spacing:-.3px}.divider{height:1px;background:var(--line);margin:16px 0}
+    .card{background:#fff;border:1px solid #e6ebf0;border-radius:17px;padding:16px;box-shadow:0 4px 13px #19333007}.card.soft{background:#f7faf8}.card.mint{background:var(--mint);border-color:#c8f2d8}.card.selected{border:2px solid var(--green);background:#f7fefa;box-shadow:0 6px 18px #16ce6720}.price-row{display:flex;justify-content:space-between;align-items:center;gap:10px}.price{color:var(--ink);font-size:26px;font-weight:900;letter-spacing:-.4px}.price small{font-size:12px;font-weight:600}.chip{padding:5px 9px;border-radius:100px;background:#e8f8ee;color:#07a35b;font-weight:850;font-size:10px}.chip.gray{background:#f1f3f6;color:#7c8594}.chip.yellow{background:#fff5cf;color:#b78304}.proposed{padding:4px 7px;border-radius:5px;background:#e6f9ee;color:#08884b;font-size:9px;font-weight:900;white-space:nowrap}.line-row{display:flex;align-items:center;gap:11px}.line-row.between{justify-content:space-between}.line-row .grow{flex:1;min-width:0}.line-row h3{font-size:13px;color:var(--ink);margin:0 0 4px}.line-row p{font-size:11px;line-height:1.7;color:#788493;margin:0}.symbol{width:43px;height:43px;border-radius:14px;background:#e7fbea;color:#11b75e;display:grid;place-items:center;flex:none}.symbol.purple{background:#f0eefc;color:#55579f}.symbol.blue{background:#eaf5ff;color:#4180bd}.symbol.gray{background:#eff1f8;color:#59608e}.symbol svg{height:23px;width:23px}.radio{border:2px solid #d4dbe4;height:22px;width:22px;border-radius:50%;display:grid;place-items:center;flex:none}.radio.on{border-color:var(--green)}.radio.on::before{content:'';height:10px;width:10px;border-radius:50%;background:var(--green)}
+    .buttonbar{padding:14px 18px 14px;border-top:1px solid #edf0f3;box-shadow:0 -7px 17px #0e233108;background:#fff;flex:none;z-index:8}.primary-btn{width:100%;background:var(--green);border:none;border-radius:18px;min-height:53px;color:#fff;font-weight:850;font-size:14px;letter-spacing:-.2px;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 8px 17px rgba(15,197,96,.22);transition:transform .15s,background .15s}.primary-btn:active{transform:scale(.985);background:#0eb95e}.secondary-btn{background:#fff;border:1px solid #dfe5e8;border-radius:15px;min-height:43px;color:var(--ink);font-weight:750;padding:0 16px}.primary-btn svg,.secondary-btn svg{width:18px;height:18px}.buttonbar .helper{color:#88929c;font-size:9px;text-align:center;margin-top:9px;line-height:1.6}
+
+    .home-hero{background:#101820;color:white;position:relative;overflow:hidden;width:100%;height:auto;aspect-ratio:946 / 264;flex:none;touch-action:pan-y;cursor:grab}
+    .hero-track{display:flex;width:100%;height:100%;transition:transform .38s cubic-bezier(.2,.7,.2,1);will-change:transform}
+    .hero-slide{flex:0 0 100%;width:100%;min-width:100%;height:100%;position:relative;background:#101820;overflow:hidden}
+    .hero-photo{width:100%;height:100%;object-fit:contain;object-position:center center;display:block}
+    .hero-second{padding:10px 22px;background:linear-gradient(125deg,#101820,#122b29)}
+    .hero-second strong{display:block;font-size:16px;line-height:1.28;color:white;margin:7px 0 3px}
+    .hero-second p{margin:0;color:#d2dfda;font-size:10px;line-height:1.4;max-width:230px}
+    .hero-second .hero-cycle{position:absolute;right:24px;top:22px;color:#46d97e;transform:rotate(-9deg);opacity:.9}
+    .hero-second .hero-cycle svg{width:74px;height:74px}
+    .brand-logo{border:1.4px solid #a9d525;border-radius:100px;color:#a9df20;font-size:15px;font-weight:900;letter-spacing:-1.1px;padding:2px 10px;line-height:1.25}
+    .hero-dots{position:absolute;bottom:7px;left:0;right:0;display:flex;gap:5px;justify-content:center;align-items:center}
+    .hero-dot{width:5px;height:5px;border:0;border-radius:9px;background:#ffffff80;padding:0;transition:all .2s}
+    .hero-dot.active{background:#b8e94b;width:15px}
+    .hero-next{position:absolute;top:50%;right:8px;transform:translateY(-50%);border:0;border-radius:50%;color:#fff;background:#0f1c2259;width:24px;height:24px;display:grid;place-items:center;opacity:.85}
+    .home-wallet-strip{display:flex;gap:9px;overflow-x:auto;scrollbar-width:none;padding:0 16px 13px;margin-top:-1px;position:relative;z-index:2;background:linear-gradient(#101820 0 21px,#fff 21px 100%)}
+    .home-wallet-strip::-webkit-scrollbar{display:none}
+    .wallet-strip-card{border:1px solid #c8cce4;background:#fff;min-width:148px;width:148px;min-height:64px;border-radius:17px;flex:none;padding:9px 11px;color:var(--ink);box-shadow:0 1px 1px #242e5c06}
+    .wallet-strip-card .label{font-size:11px;white-space:nowrap;color:#444b83}
+    .wallet-strip-card .value{font-size:16px;font-weight:750;line-height:1.35;margin-top:3px;display:flex;align-items:center;gap:7px}
+    .wallet-strip-card .value small{font-size:12px;font-weight:650;color:#0bb75e}
+    .wallet-strip-card .value svg{width:19px;height:19px;margin-left:auto}
+    .home-space{padding:15px 16px 27px}
+    .quick-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:20px}
+    .quick{border:1.2px solid #c8cce7;border-radius:15px;text-align:center;padding:13px 2px 12px;background:#fff;color:var(--ink);min-height:84px}
+    .quick svg{width:28px;height:28px;margin:0 auto 10px}
+    .quick label{display:block;font-size:11px;font-weight:700}
+    .quick:nth-child(2){color:var(--ink)}
+    .map-card{border-radius:16px;position:relative;height:195px;overflow:hidden;border:0;background:#cceafa}
+    .map-mock{display:block;width:100%;height:100%;position:relative;background:#e8f0ee}.map-mock>svg{width:100%;height:100%;display:block}.mock-bike-pin{position:absolute;left:51%;top:45%;width:36px;height:36px;transform:translate(-50%,-50%);border:4px solid white;background:#17c76b;color:#fff;border-radius:50%;display:grid;place-items:center;box-shadow:0 3px 13px #153c3f49}.mock-bike-pin svg{width:19px;height:19px}
+    .map-demo-label{position:absolute;right:9px;top:9px;background:#fffE;border-radius:30px;padding:4px 7px;color:#66768b;font-size:9px;font-weight:700}
+    .home-scan{width:100%;border-radius:35px;background:#16ce68;border:0;color:white;height:56px;margin-top:12px;font-weight:800;font-size:18px;display:flex;justify-content:center;align-items:center;gap:10px}
+    .home-scan svg{height:24px;width:24px}
+    .home-shortcuts{display:flex;justify-content:space-around;gap:4px;padding:16px 0 7px}
+    .home-shortcuts button{flex:1;display:flex;justify-content:center;align-items:center;gap:5px;border:0;background:transparent;color:var(--ink);font-weight:700;font-size:11px;white-space:nowrap;padding:7px 1px}
+    .home-shortcuts button svg{width:18px;height:18px}
+    .foryou-section{margin-top:21px}
+    .foryou-section h2{font-size:20px;font-weight:830;color:var(--ink);margin:0 0 13px}
+    .foryou-cards{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:10px}
+    .foryou-cards::-webkit-scrollbar{display:none}
+    .foryou-card{flex:0 0 91%;min-width:0;border-radius:16px;overflow:hidden;scroll-snap-align:start;background:#fff}
+    .foryou-card img{width:100%;aspect-ratio:1.8;object-fit:cover;display:block;border-radius:14px}
+    .foryou-card h3{font-size:16px;color:var(--ink);margin:13px 4px 3px}
+    .foryou-card p{font-size:11px;color:var(--ink);line-height:1.5;margin:0 4px}
+    .home-bottom{padding:10px 8px 9px;border-top:1px solid #f0f0f4;background:#fffffff2;display:flex;justify-content:space-around;flex:none}
+    .nav-item{border:0;background:transparent;color:#9d9ca9;display:flex;align-items:center;flex-direction:column;gap:3px;min-width:0;flex:1;font-size:9px;font-weight:700;padding:0 1px}
+    .nav-item.active{color:#0bc565}.nav-item svg{width:22px;height:22px}
+    .choice{width:100%;display:flex;text-align:left;gap:13px;align-items:center;border:1.5px solid #e5eaf0;background:#fff;border-radius:17px;padding:16px 14px;margin:13px 0;transition:all .15s}.choice.active{background:#f6fefa;border-color:#16ce6b;box-shadow:0 3px 12px #12b96210}.choice .details{flex:1;min-width:0}.choice strong{color:var(--ink);font-size:14px}.choice p{font-size:11px;color:#828c97;line-height:1.6;margin:5px 0 0}.choice .subline{margin-top:9px;display:flex;align-items:center;gap:6px;color:#18885a;font-size:10px;font-weight:750}.hintbox{display:flex;align-items:flex-start;gap:10px;padding:12px 13px;background:#f1f8ff;border-radius:13px;color:#4e6482;font-size:11px;line-height:1.8;margin-top:18px}.hintbox svg{width:18px;height:18px;flex:none;margin-top:1px}.info-label{font-size:10px;font-weight:850;color:#939cab;letter-spacing:.3px}.bank-card{background:linear-gradient(135deg,#252d62,#5d65a5);border-radius:19px;padding:21px;color:#fff;min-height:142px;overflow:hidden;position:relative;margin:16px 0}.bank-card:before{content:'';position:absolute;width:130px;height:130px;border:25px solid #ffffff10;border-radius:50%;right:-43px;top:-45px}.bank-card .visa{font-size:22px;font-weight:900;letter-spacing:-1px;position:absolute;right:21px;bottom:15px;font-style:italic}.bank-card .card-digits{font-size:17px;letter-spacing:4px;font-weight:750;margin-top:22px}.bank-card .card-top{font-size:10px;opacity:.82;letter-spacing:1px}.demo-note{border:1px dashed #b7c7b8;background:#f6fbf6;border-radius:12px;padding:10px 12px;font-size:10px;color:#52725c;line-height:1.7}.selector{display:flex;gap:8px;margin:14px 0}.selector button{flex:1;border:1px solid #e5e9ef;background:#fff;border-radius:13px;padding:11px 7px;font-size:11px;color:var(--ink);font-weight:850}.selector button.active{background:#dff9e9;border:1.5px solid var(--green);color:#078c4b}.check-row{display:flex;align-items:flex-start;gap:10px;padding:12px 0}.checkmark{width:18px;height:18px;background:var(--green);border-radius:50%;display:grid;place-items:center;color:#fff;flex:none}.check-row p{font-size:11px;color:#677785;line-height:1.65;margin:0}.steps-mini{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 0 4px}.steps-mini b{width:24px;height:4px;background:#e5ebe9;border-radius:30px}.steps-mini b.active{background:var(--green)}.bike-detail{display:flex;align-items:center;gap:14px;padding:18px 12px;border:1px solid #e8eee9;background:#f9fcfa;border-radius:19px;margin:16px 0 19px}.bike-drawing{width:113px;flex:none;color:#18c96b}.bike-drawing svg{width:113px;height:76px}.bike-detail h3{color:var(--ink);font-size:13px;margin:0 0 4px}.bike-detail p{font-size:10px;color:#88949a;margin:0 0 8px}.highlight-price{background:#152334;color:#fff;border-radius:20px;padding:21px;text-align:center;margin:13px 0}.highlight-price .eyebrow-s{color:#b7eccc;letter-spacing:.5px;font-size:10px;font-weight:700}.highlight-price strong{display:block;font-weight:950;font-size:38px;margin:4px 0}.highlight-price small{font-size:11px;color:#aabccc}.summary-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:11px 0;border-bottom:1px dashed #e8ecf0;gap:16px}.summary-row:last-child{border-bottom:0}.summary-row .left-label{color:#7d8795;line-height:1.5}.summary-row .right-val{font-weight:850;color:var(--ink);text-align:right;line-height:1.5}.callout{border-radius:14px;background:#eaf9f0;padding:13px 15px;display:flex;gap:12px;align-items:flex-start;margin:14px 0}.callout svg{color:#07a857;flex:none}.callout p{font-size:10px;color:#587b69;line-height:1.7;margin:0}.callout strong{color:#078f4c}.callout.warning{background:#fff8e6}.callout.warning svg{color:#c19b19}.callout.warning p{color:#886d32}
+    /* V4: Pay Per Ride channel selection and post-ride QR mock. Scoped to payment only. */
+    .pay-channel-card{display:grid;grid-template-columns:38px 1fr 22px;align-items:center;gap:11px;width:100%;text-align:left;border:1.5px solid #e5eaf0;border-radius:15px;padding:14px 12px;background:white;margin-top:10px}
+    .pay-channel-card.active{border-color:#10c76a;background:#f5fff9}
+    .pay-channel-card strong{display:block;font-size:13px;color:var(--ink);font-weight:850}
+    .pay-channel-card small{display:block;font-size:10px;color:#788493;line-height:1.6;margin-top:3px}
+    .pay-channel-note{font-size:11px;line-height:1.8;margin-top:12px;padding:12px 13px;border-radius:12px;background:#f1f8ff;color:#516a86}
+    .qr-card{margin-top:13px;background:#fff;border-radius:18px;border:1px solid #e5ebe9;padding:20px 17px;text-align:center}
+    .qr-demo-art{height:192px;width:192px;display:block;margin:12px auto;border:8px solid #fff;box-shadow:0 0 0 1px #dfe7eb;border-radius:7px}
+    .qr-sub{font-size:11px;color:#7c8694;line-height:1.7}
+    .pay-due{border-radius:18px;background:#f5fbf7;border:1px solid #d4eddb;padding:18px;margin-top:13px;text-align:center}
+    .pay-due strong{display:block;font-size:34px;color:var(--ink);margin:4px 0}
+    .pay-due small{font-size:11px;color:#627c70}
+    .ride-reward{margin:18px 16px 0;background:#006451;border-radius:22px;padding:0 12px 12px;overflow:hidden;box-shadow:0 8px 26px rgba(0,82,68,.13)}
+    .ride-reward-top{position:relative;background:#087b69;color:white;margin:0 -12px;border-radius:22px 22px 0 0;min-height:170px;padding:23px 22px 24px;overflow:hidden}
+    .ride-reward-top::after{content:'✧';position:absolute;right:25px;top:31px;color:#54c7af;font-size:76px;opacity:.45;transform:rotate(17deg)}
+    .ride-reward-top .reward-kicker{font-size:12px;color:#defbf4;font-weight:650}
+    .ride-reward-top .reward-time{font-size:44px;color:white;font-weight:850;letter-spacing:-1.2px;line-height:1.15;margin-top:10px;font-variant-numeric:tabular-nums}
+    .ride-reward-top .reward-time span{font-size:13px;font-weight:600;margin-left:5px}
+    .ride-reward-top p{font-size:11px;color:#dcf8ec;margin:6px 0 0}
+    .ride-reward-bottom{background:white;color:var(--ink);margin-top:-1px;border-radius:18px;padding:17px 15px 13px}
+    .ride-reward-bottom .reward-balance{font-size:12px;color:#7e8699;font-weight:650}
+    .ride-reward-bottom .reward-cost{font-size:29px;font-weight:850;color:var(--ink);margin:5px 0 7px}
+    .ride-reward-bottom .reward-method{border-top:1px solid #eceef1;padding-top:11px;font-size:12px;display:flex;align-items:center;justify-content:space-between;font-weight:750}
+    .ride-reward-bottom .reward-method span{color:#0cbd62}
+    .segment-label{font-size:11px;color:#7c8794;font-weight:800;margin-top:8px}
+.info-points{display:flex;gap:12px;justify-content:space-between;margin-top:12px}.info-points>.card{flex:1;padding:14px}.info-points strong{font-size:18px;font-weight:900;color:var(--ink)}.info-points label{font-size:10px;color:#8e99a5;display:block;margin-bottom:5px}.modal-scrim{position:absolute;inset:0;background:rgba(16,27,35,.55);z-index:80;display:flex;align-items:flex-end}.sheet{background:#fff;width:100%;border-radius:27px 27px 0 0;padding:14px 20px 28px;box-shadow:0 -15px 45px #0d1d2c33}.sheet-handle{width:42px;height:4px;border-radius:10px;background:#d5d9de;margin:0 auto 19px}.sheet h2{font-size:19px;color:var(--ink);margin:0 0 8px}.sheet p{font-size:12px;line-height:1.8;color:#7e8791;margin:0}.sheet-actions{display:grid;gap:8px;margin-top:19px}.done-head{background:linear-gradient(180deg,#e6fbed,#fff);padding:17px 20px 20px;text-align:center}.success-circle{height:74px;width:74px;background:#15cf68;color:white;box-shadow:0 0 0 11px #b7f3cf80;border-radius:50%;display:grid;place-items:center;margin:12px auto 20px}.success-circle svg{height:39px;width:39px}.done-head h2{font-size:23px;color:var(--ink);margin:0 0 7px}.done-head p{font-size:11px;color:#81908d;margin:0}.receipt{border:1px solid #e7edef;border-radius:19px;padding:18px;margin-top:15px;position:relative;overflow:hidden;box-shadow:0 9px 23px #253e3f0a}.receipt::after{content:'';height:13px;position:absolute;bottom:-6px;left:0;right:0;background:radial-gradient(circle at 7px 0,#fff 6px,transparent 7px) repeat-x;background-size:17px 13px}.total-row{border-top:1px dashed #dae2e3;padding-top:17px;margin-top:9px;display:flex;align-items:baseline;justify-content:space-between}.total-row strong{font-size:28px;color:#0cbe64}.right{display:none}.right .title{color:#193347;font-size:13px;font-weight:850;margin:0 0 11px}.flow-list{margin:0;padding:0;list-style:none;counter-reset:step}.flow-list li{position:relative;padding:0 0 22px 35px;font-size:12px;color:#73817c}.flow-list li:not(:last-child):before{content:'';width:1px;background:#c3dcd0;position:absolute;left:10px;top:22px;height:calc(100% - 11px)}.flow-list li:after{content:attr(data-n);position:absolute;left:0;top:0;border:1px solid #cde9da;border-radius:50%;background:white;width:22px;height:22px;color:#2c9b68;display:grid;place-items:center;font-size:9px;font-weight:850}.flow-list li.current{font-weight:850;color:#1a3a2d}.flow-list li.current:after{background:#17cf6e;color:white;border-color:#17cf6e}.right .guide{background:#fff;border:1px solid #e2e9e9;border-radius:17px;padding:18px 19px;line-height:1.75;font-size:12px;color:#61727c;max-width:255px}.guide strong{color:#1b3341}.guide button{border:0;background:#e5f9ee;color:#098e51;border-radius:11px;padding:8px 12px;font-weight:850;margin-top:12px;font-size:11px;display:flex;gap:6px;align-items:center}.demo-mark{background:#fef5df;color:#907009;border-radius:7px;padding:5px 9px;font-size:10px;font-weight:850;white-space:nowrap;display:inline-flex;gap:5px;align-items:center}
+
+    .scan-screen{background:#000;color:#fff;display:flex;flex-direction:column;flex:1;min-height:0}
+    .scan-head{background:linear-gradient(#0f1822,#010101);display:flex;align-items:center;gap:12px;justify-content:space-between;padding:10px 17px 10px;min-height:66px}
+    .scan-head .round-btn{background:#11171b;border-color:#29323a;color:white;width:42px;height:42px}
+    .scan-head h2{font-size:18px;color:white;margin:0;font-weight:750}
+    .scan-help{width:37px;height:37px;border:1px solid #ffffff44;border-radius:50%;background:#111;color:white;display:grid;place-items:center}
+    .scanner-view{position:relative;flex:1;min-height:0;background:linear-gradient(180deg,#050707,#000 40%);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:6px 18px 18px}
+    .scan-message{color:#aab9b7;font-size:11px;margin:0 0 30px}
+    .scan-frame{width:min(70%,252px);aspect-ratio:1.06;position:relative;display:grid;place-items:center;max-height:260px}
+    .scan-frame .corner{position:absolute;width:49px;height:49px;border-color:#16d470;border-style:solid;border-width:0}
+    .scan-frame .tl{top:0;left:0;border-top-width:5px;border-left-width:5px;border-top-left-radius:23px}
+    .scan-frame .tr{top:0;right:0;border-top-width:5px;border-right-width:5px;border-top-right-radius:23px}
+    .scan-frame .bl{bottom:0;left:0;border-bottom-width:5px;border-left-width:5px;border-bottom-left-radius:23px}
+    .scan-frame .br{bottom:0;right:0;border-bottom-width:5px;border-right-width:5px;border-bottom-right-radius:23px}
+    .scan-frame .scan-pulse{border:1px dashed #0cb85c6a;border-radius:10px;width:64px;height:64px;display:grid;place-items:center;color:#0ddd6e}
+    .scan-frame .scan-pulse svg{width:30px;height:30px}
+    .scanner-bottom{background:#000;padding:9px 21px 18px;flex:none;text-align:center}
+    .scanner-bottom img{width:100%;height:76px;object-fit:cover;display:block;border-radius:11px;object-position:center}
+    .scan-main-btn{border:1px solid #0dc964;background:#14c86a;color:white;border-radius:16px;width:100%;height:47px;margin:12px 0 13px;font-size:13px;font-weight:800}
+    .torch-btn{display:inline-flex;gap:7px;align-items:center;border:1px solid #e5e9fb;background:#30365e;color:white;border-radius:40px;padding:8px 15px;font-size:11px}
+    .scan-demo-note{font-size:9px;color:#99a6aa;margin:8px 0 0}
+    .payment-context{background:#f7f9fe;border:1px solid #e4e8f4;border-radius:14px;padding:13px 14px;display:flex;align-items:center;gap:12px;margin:16px 0 16px}
+    .payment-context .mini-bicycle{width:47px;height:43px;border-radius:11px;background:#eaf9f0;display:grid;place-items:center;color:#0ac565;flex:none}
+    .payment-context .mini-bicycle svg{width:26px;height:26px}
+    .payment-context strong{font-size:12px;color:var(--ink);display:block}
+    .payment-context span{font-size:11px;color:#7d8593;display:block;margin-top:2px}
+
+    @media(max-width:1140px){.layout{grid-template-columns:420px;justify-content:center;gap:0}.left,.right{display:none}}
+    @media(max-width:760px){body{background:white}.layout{display:block;padding:0;min-height:100dvh}.left,.right{display:none}.phone-shell{width:100%;height:100dvh;min-height:0;border:none;border-radius:0;box-shadow:none}.phone-shell::before{display:none}.status{padding-top:max(8px,env(safe-area-inset-top));height:calc(32px + env(safe-area-inset-top))}.buttonbar{padding-bottom:max(13px,env(safe-area-inset-bottom))}}
+    @media(min-width:761px) and (max-height:790px){.layout{padding:12px 25px}.phone-shell{height:calc(100vh - 25px);min-height:650px}.phone-shell::before{height:18px}}
+    /* v6: Desktop presentation only. Keep the virtual phone at its designed
+       dimensions internally, and fit its frame within the visible viewport. */
+    @media(min-width:761px){
+      .layout{justify-items:center}
+      .phone-shell{height:892px;min-height:0}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:0s!important;animation-duration:0s!important}}
+  </style>
+</head>
+<body>
+<svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden">
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M15 18 9 12l6-6"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+<symbol id="i-bicycle" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="m5.5 17.5 4.5-9.5 4.5 9.5H5.5m9 0 3-7.5h3M10 8H7m4-3h4"/></symbol>
+<symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="15" rx="3"/><path d="M3 10h18m-13-4V4h10v2m-1 10h.01"/></symbol>
+<symbol id="i-credit" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19m-14 5h4"/></symbol>
+<symbol id="i-scan" viewBox="0 0 24 24"><path d="M4 9V4h5m6 0h5v5M4 15v5h5m6 0h5v-5M4 12h16"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16m6-14v16"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.3 4.5L19 7"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 8 4v6c0 5-3 8-8 10-5-2-8-5-8-10V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M8 5h13M8 12h13M8 19h13M3 5h.01M3 12h.01M3 19h.01"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9H3zM9 20v-6h6v6"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a3 3 0 0 1 5 2c0 2-2.5 2-2.5 4m0 3h.01"/></symbol>
+<symbol id="i-receipt" viewBox="0 0 24 24"><path d="M5 3h14v18l-3-2-4 2-4-2-3 2zM9 8h6M9 12h6"/></symbol>
+<symbol id="i-sparkle" viewBox="0 0 24 24"><path d="m12 2 2 8 8 2-8 2-2 8-2-8-8-2 8-2z"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 8a8 8 0 1 0 1 5M20 3v5h-5"/></symbol>
+<symbol id="i-route" viewBox="0 0 24 24"><circle cx="5" cy="18" r="2"/><circle cx="18" cy="5" r="2"/><path d="M5 16v-5a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-12h-7z"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+</svg>
+<div class="layout">
+  <aside class="left">
+    <p class="eyebrow">dX330 · Design Thinking</p>
+    <h1>Every ride.<br><span>Only what</span><br>you use.</h1>
+    <p>ต้นแบบแนวคิด <b>Pay Per Ride</b> สำหรับ Anywheel จักรยานธรรมดา ช่วยให้ผู้ใช้จ่ายตามทริปโดยไม่ต้องเติมเงินล่วงหน้าเกินความจำเป็น</p>
+    <div class="research"><strong>How Might We?</strong><p>เราจะช่วยให้ผู้ใช้ชำระค่าเช่าและจัดการยอดเงินคงเหลือได้อย่างยืดหยุ่นและโปร่งใสขึ้นอย่างไร?</p><p><em>Research context:</em> ผู้ตอบ Google Form ที่เข้าเกณฑ์ 5 คน มี 2 คนกล่าวถึงการเติมเงินขั้นต่ำและยอดคงเหลือ</p></div>
+    <div class="factline"><i></i> Interactive demo · ไม่เชื่อมระบบชำระเงินจริง</div>
+  </aside>
+  <main class="phone-shell" aria-label="Anywheel clickable mobile prototype">
+    <div id="status" class="status" aria-label="แถบสถานะโทรศัพท์จำลอง">
+      <span class="status-time"><span id="clock">16:22</span><svg class="location-glyph" id="status-side" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 9.7 18 1.4 13 18 9.8 11.4z"/></svg></span>
+      <span class="status-icon" aria-hidden="true">
+       <svg viewBox="0 0 20 15"><rect x="1" y="9" width="3" height="6" rx="1"/><rect x="6" y="6" width="3" height="9" rx="1"/><rect x="11" y="3" width="3" height="12" rx="1" opacity=".75"/><rect x="16" y="0" width="3" height="15" rx="1" opacity=".45"/></svg>
+       <svg class="wifi-mark" viewBox="0 0 22 17" fill="none"><path d="M1.5 5.8C7.1.8 15 .8 20.5 5.8M5 9.4c3.7-3.3 8.3-3.3 12 0M8.8 13c1.5-1.3 3-1.3 4.4 0" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="11" cy="15" r="1.2" fill="currentColor"/></svg>
+       <svg class="battery-mark" viewBox="0 0 29 15" fill="none"><rect x="1" y="1" width="24" height="13" rx="4" stroke="currentColor" stroke-width="1.7"/><rect x="3.7" y="3.7" width="18.6" height="7.6" rx="2" fill="currentColor"/><path d="M27 5v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+    </div>
+    <div class="screen-root" id="root" aria-live="polite"></div>
+    <div id="modal-host"></div>
+  </main>
+  <aside class="right">
+    <p class="title">INTERACTIVE USER FLOW</p>
+    <ol class="flow-list" id="steps"></ol>
+    <div class="guide"><strong>Pay Per Ride ใช้ได้โดยไม่ต้องผูกบัตร</strong><br>ในต้นแบบเดียวทดลองได้ทั้ง Wallet เดิม, Pay Per Ride ผ่านบัตรจำลอง และ PromptPay QR จำลองหลังจบทริป<br><span class="demo-mark" style="margin-top:10px">◉ Concept Prototype</span><button type="button" id="reset-desktop"><svg class="icon sm"><use href="#i-refresh"/></svg> เริ่มทดลองใหม่</button></div>
+  </aside>
+</div>
+<script>
+(function(){
+'use strict';
+const screens=['หน้าแรกและเลือกรถ','สแกน QR จำลอง','เลือกวิธีชำระ','เลือกช่องทาง Pay Per Ride','รายละเอียดช่องทางชำระ','ยืนยันเริ่มทริป','ระหว่างปั่น / คืนรถ','ชำระ QR หลังจบทริป','ใบเสร็จและสรุปยอด'];
+const WALLETI=44;
+let s={page:0,method:null,payChannel:null,card:'visa',minute:18,modal:false,completed:false,qrPaid:false,fromScreen:0,banner:0,torch:false};
+const el=document.getElementById('root'),status=document.getElementById('status'),modal=document.getElementById('modal-host');
+const ic=(id,cls='')=>`<svg class="icon ${cls}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
+const money=n=>`฿${n.toFixed(2)}`;
+const fare=()=>Math.ceil(s.minute/30)*10;
+const pmethod=()=>s.method==='perride'?(s.payChannel==='promptpay'?'Pay Per Ride · PromptPay QR':'Pay Per Ride · บัตรเดบิต/เครดิต'):'Anywheel Wallet';
+const l=(t,v)=>`<div class="summary-row"><span class="left-label">${t}</span><span class="right-val">${v}</span></div>`;
+const head=(title,returnTo,tag='CONCEPT')=>`<div class="screen-head"><button type="button" class="round-btn" aria-label="ย้อนกลับ" data-action="back" data-to="${returnTo}">${ic('arrow-left')}</button><div class="head-title">${title}</div><div class="proto-tag">${tag}</div></div>`;
+const bottom=(action,label,helper='')=>`<footer class="buttonbar"><button type="button" class="primary-btn" data-action="${action}">${label} ${ic('arrow-right')}</button>${helper?`<div class="helper">${helper}</div>`:''}</footer>`;
+const bikeSvg=()=>`<svg viewBox="0 0 170 108" role="img" aria-label="จักรยานธรรมดาจำลอง" style="stroke-linecap:round;stroke-linejoin:round"><g fill="none" stroke="#182b2b" stroke-width="5"><circle cx="32" cy="76" r="23"/><circle cx="133" cy="76" r="23"/></g><path d="M34 74 58 38 83 75 34 75 63 40 97 41 131 75" stroke="#10be60" stroke-width="7" fill="none"/><path d="m94 41 12-18 12 0m-62 18-7-13h-13" stroke="#162f27" stroke-width="5" fill="none"/><path d="m103 23 9-1M41 27h20M81 75l5 9m-1-14h13" stroke="#162f27" stroke-width="4" fill="none"/><rect x="37" y="21" width="27" height="6" rx="3" fill="#1c3332"/><rect x="111" y="17" width="27" height="6" rx="3" fill="#1c3332"/><path d="M65 40h24" stroke="#0dac59" stroke-width="5"/></svg>`;
+function mapSVG(){return `<svg viewBox="0 0 370 210" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="370" height="210" fill="#e9f0ef"/>
+<path d="M-45 166C55 116 65 135 143 22s174-34 266-91" fill="none" stroke="#badfe9" stroke-width="37"/>
+<g fill="none" stroke="#fff" stroke-width="14" opacity=".95"><path d="M-10 25 380 55M-20 88 396 125M-12 188 360 165M68-15 120 237M183-15 233 225M305-15 330 230"/><path d="M-11 133 378 23"/></g>
+<g fill="none" stroke="#cfd9d8" stroke-width="1.4"><path d="M-10 25 380 55M-20 88 396 125M-12 188 360 165M68-15 120 237M183-15 233 225M305-15 330 230M-11 133 378 23"/></g>
+<g fill="#c7dcca" opacity=".85"><rect x="268" y="69" width="50" height="40" rx="8"/><rect x="13" y="132" width="54" height="43" rx="8"/></g>
+<text x="12" y="101" font-size="11" fill="#8aada4">จุดสาธิต</text><text x="246" y="167" font-size="10" fill="#91aba8">พื้นที่ตัวอย่าง</text></svg>`}
+function renderHome(){return `<div class="screen-body" id="home-scroll">
+<div class="home-hero" aria-label="แบนเนอร์แนะนำของ Anywheel"><div class="hero-track" id="hero-track" style="transform:translateX(-${s.banner*100}%)">
+  <div class="hero-slide"><img class="hero-photo" src="assets/home_pass.jpg" alt="Save more with Anywheel Pass จากภาพหน้าจออ้างอิง"/></div>
+  <div class="hero-slide hero-second" aria-label="แบนเนอร์จำลองลำดับที่สอง"><span class="brand-logo">anywheel</span><strong>เดินทางได้อย่างอิสระ<br>ด้วยจักรยานธรรมดา</strong><p>ค้นหารถ · สแกน QR · เริ่มทริปได้ง่าย ๆ</p><span class="hero-cycle">${ic('bicycle','xl')}</span></div>
+</div><button class="hero-next" data-action="bannerNext" type="button" aria-label="ดูแบนเนอร์ถัดไป">${ic('arrow-right','sm')}</button><div class="hero-dots"><button class="hero-dot ${s.banner===0?'active':''}" data-action="bannerDot" data-value="0" aria-label="แบนเนอร์ที่ 1"></button><button class="hero-dot ${s.banner===1?'active':''}" data-action="bannerDot" data-value="1" aria-label="แบนเนอร์ที่ 2"></button></div></div>
+<div class="home-wallet-strip" aria-label="ข้อมูลบัญชี"><div class="wallet-strip-card"><div class="label">พาส All Ride</div><div class="value"><small>ซื้อ</small>${ic('bicycle')}</div></div><button type="button" class="wallet-strip-card" style="text-align:left" data-action="walletNotice"><div class="label">ยอดเครดิตคงเหลือ</div><div class="value">฿44.00 ${ic('wallet')}</div></button><div class="wallet-strip-card"><div class="label">รีวอร์ดพอยท์</div><div class="value">20 pts ${ic('sparkle')}</div></div></div>
+<div class="home-space"><div class="quick-actions">
+<button type="button" class="quick" data-action="demoNotice">${ic('bicycle')}<label>การปั่น</label></button><button type="button" class="quick" data-action="demoNotice">${ic('credit')}<label>คูปอง</label></button><button type="button" class="quick" data-action="demoNotice">${ic('sparkle')}<label>รางวัล</label></button><button type="button" class="quick" data-action="demoNotice">${ic('list')}<label>ดูเพิ่มเติม</label></button>
+</div><div class="map-card"><div class="map-mock" role="img" aria-label="แผนที่จำลองของจุดจอดจักรยาน ไม่อ้างอิงสถานที่จริง">${mapSVG()}<span class="mock-bike-pin" aria-hidden="true">${ic('bicycle')}</span></div><span class="map-demo-label">แผนที่จำลอง · ไม่ใช่ GPS จริง</span></div>
+<button type="button" class="home-scan" data-action="start">${ic('scan')} สแกนเพื่อปั่น</button>
+<div class="home-shortcuts"><button type="button" data-action="demoNotice">${ic('wallet')}Anywheel พาส</button><button type="button" data-action="walletNotice">${ic('credit')}เติมเงิน</button><button type="button" data-action="demoNotice">${ic('route')}สำรวจเส้นทาง</button></div>
+<section class="foryou-section"><h2>สำหรับคุณ</h2><div class="foryou-cards"><article class="foryou-card"><img src="assets/for_you_sponsor.jpg" alt="แบนเนอร์ Sponsor x Anywheel จากภาพหน้าจออ้างอิง"/><h3>ปั่นจังหวะไหนก็สดชื่น</h3><p>ดื่มสปอนเซอร์ สดชื่น แล้วปั่นฟรี!</p></article><article class="foryou-card"><img src="assets/for_you_safety.jpg" alt="โปสเตอร์ปฏิบัติตามกฎความปลอดภัยในการใช้จักรยานจากภาพอ้างอิงของผู้ใช้"/><h3>โปรดระมัดระวัง!</h3><p>เพื่อความปลอดภัย โปรดไม่นั่งตะกร้าและปั่นซ้อนสอง</p></article></div></section>
+</div></div><nav class="home-bottom" aria-label="เมนูแอปจำลอง"><button class="nav-item active" data-action="home" type="button">${ic('home')}หน้าหลัก</button><button class="nav-item" data-action="demoNotice" type="button">${ic('list')}กิจกรรม</button><button class="nav-item" data-action="start" type="button">${ic('scan')}สแกน</button><button class="nav-item" data-action="demoNotice" type="button">${ic('help')}การแจ้งเตือน</button><button class="nav-item" data-action="demoNotice" type="button">${ic('user')}โปรไฟล์</button></nav>`}
+function renderScanner(){return `<div class="scan-screen"><div class="scan-head"><button type="button" class="round-btn" data-action="back" data-to="0" aria-label="กลับหน้าหลัก">${ic('arrow-left')}</button><h2>สแกนเพื่อปลดล็อค</h2><button type="button" class="scan-help" data-action="scannerHelp" aria-label="คำแนะนำสแกน">${ic('help')}</button></div><div class="scanner-view"><p class="scan-message">วาง QR Code บนจักรยานให้อยู่ในกรอบ</p><div class="scan-frame"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="scan-pulse">${ic('scan')}</div></div></div><div class="scanner-bottom"><img src="assets/scanner_bikes.png" alt="รูปแบบจักรยานในหน้าสแกนต้นฉบับ โดยต้นแบบนี้ใช้เฉพาะจักรยานธรรมดา"/><button class="scan-main-btn" type="button" data-action="scanComplete">${ic('scan','sm')} จำลองการสแกนจักรยานธรรมดา</button><button class="torch-btn" type="button" data-action="torch">${ic('bolt','sm')} ไฟฉาย: ${s.torch?'เปิด':'ปิด'}</button><p class="scan-demo-note">กล้องจำลอง · ไม่มีการเปิดกล้องหรือสแกนจริง</p></div></div>`}
+function renderMethod(){return `${head('เลือกวิธีชำระเงิน',1,'NEW FEATURE')}<div class="screen-body padded"><p class="section-overline">STEP 1 / PAYMENT</p><h2>เลือกวิธีชำระเงิน</h2><p class="subtext">เลือกวิธีจ่ายที่สะดวกก่อนเริ่มเช่าจักรยานธรรมดา</p><div class="payment-context"><span class="mini-bicycle">${ic('bicycle')}</span><div><strong>Standard Bicycle · AW-0287</strong><span>ค่าบริการตัวอย่าง ฿10 / 30 นาที</span></div></div>
+<button type="button" class="choice ${s.method==='wallet'?'active':''}" data-action="method" data-value="wallet" aria-pressed="${s.method==='wallet'}"><span class="symbol purple">${ic('wallet')}</span><span class="details"><strong>Anywheel Wallet</strong><p>ใช้ยอดเครดิตที่มีอยู่ในกระเป๋าเงิน</p><span class="subline">${ic('check','sm')} ยอดคงเหลือ ฿44.00</span></span><span class="radio ${s.method==='wallet'?'on':''}"></span></button>
+<button type="button" class="choice ${s.method==='perride'?'active':''}" data-action="method" data-value="perride" aria-pressed="${s.method==='perride'}"><span class="symbol">${ic('credit')}</span><span class="details"><span class="line-row" style="gap:7px"><strong>Pay Per Ride</strong><span class="proposed">PROPOSED</span></span><p>เลือกจ่ายผ่านบัตรหรือ PromptPay QR โดยไม่ต้องเติมเครดิตก่อน</p><span class="subline">${ic('check','sm')} ลดโอกาสมียอดคงเหลือใหม่</span></span><span class="radio ${s.method==='perride'?'on':''}"></span></button>
+<div class="hintbox">${ic('info')}<div>Pay Per Ride เป็นฟีเจอร์แนวคิดสำหรับวิชา dX330 ยังไม่ใช่บริการที่ยืนยันว่ามีอยู่ใน Anywheel ปัจจุบัน</div></div>
+<div class="steps-mini"><b class="active"></b><b></b><b></b><b></b></div></div>${bottom('continueMethod','ดำเนินการต่อ','ไม่มีการเรียกเก็บเงินจริง • โหมดสาธิต')}`}
+function renderSetup(){return `${head('เลือกช่องทางชำระเงิน',2,'PAY PER RIDE')}<div class="screen-body padded"><p class="section-overline">STEP 2 / PAYMENT</p><h2>เลือกช่องทางที่สะดวก</h2><p class="subtext">สำหรับ Pay Per Ride คุณสามารถเลือกให้ตัดผ่านบัตรหรือชำระด้วย PromptPay หลังจบทริป</p>
+<button type="button" class="pay-channel-card ${s.payChannel==='card'?'active':''}" data-action="channelGo" data-value="card" aria-pressed="${s.payChannel==='card'}"><span class="symbol blue" style="width:38px;height:38px">${ic('credit')}</span><span><strong>บัตรเดบิต / เครดิต</strong><small>ตัดเงินค่าทริปอัตโนมัติหลังคืนรถ (จำลอง)</small></span><span class="radio ${s.payChannel==='card'?'on':''}"></span></button>
+<button type="button" class="pay-channel-card ${s.payChannel==='promptpay'?'active':''}" data-action="channelGo" data-value="promptpay" aria-pressed="${s.payChannel==='promptpay'}"><span class="symbol" style="width:38px;height:38px">${ic('scan')}</span><span><strong>PromptPay QR</strong><small>ทราบยอดจริงหลังจบทริป แล้วสแกนจ่ายเอง (จำลอง)</small></span><span class="radio ${s.payChannel==='promptpay'?'on':''}"></span></button>
+<div class="hintbox">${ic('info')}<div>ต้นแบบนี้เปลี่ยนให้แตะการ์ดแล้วไปอีกหน้า เพื่อดูรายละเอียดก่อนยืนยันการใช้งานจริง</div></div>
+<div class="steps-mini"><b class="active"></b><b class="active"></b><b></b><b></b><b></b></div></div>${bottom('continueSetup','ดูรายละเอียดช่องทาง','ยังไม่มีการเชื่อมต่อธนาคารหรือรับเงินจริง')}`}
+function renderSetupDetail(){return `${head('รายละเอียดการชำระเงิน',3,s.payChannel==='promptpay'?'PROMPTPAY QR':'CARD SETUP')}<div class="screen-body padded"><p class="section-overline">STEP 3 / PAYMENT DETAILS</p>${s.payChannel==='card'?`<h2>จ่ายผ่านบัตรจำลอง</h2><p class="subtext">ระบบจะเรียกเก็บค่าทริปโดยอัตโนมัติหลังคืนรถ โดยไม่ต้องเติม Wallet ล่วงหน้า</p><div class="bank-card"><div class="card-top">PAYMENT METHOD · DEMO ONLY</div><div class="card-digits">•••• &nbsp; •••• &nbsp; •••• &nbsp; 4242</div><div style="font-size:11px;margin-top:10px;opacity:.8">Anywheel demo card</div><div class="visa">VISA</div></div><div class="demo-note">เป็นบัตรจำลอง ไม่ต้องกรอกเลขบัตรหรือข้อมูลส่วนตัวจริง</div><div class="callout">${ic('check')}<p><strong>สิ่งที่ผู้ใช้ได้จาก Pay Per Ride</strong><br>สามารถเริ่มทริปได้เลย และชำระเฉพาะค่าทริปหลังคืนรถ โดยไม่ต้องเติมเครดิตขั้นต่ำเข้ากระเป๋าเงินก่อน</p></div>`:`<h2>จ่ายผ่าน PromptPay QR</h2><p class="subtext">ระบบจะคำนวณยอดจริงหลังจบทริป แล้วแสดง QR จำลองเพื่อให้ผู้ใช้ยืนยันการชำระด้วยตนเอง</p><div class="pay-channel-note"><strong>ขั้นตอนการชำระแบบ PromptPay</strong><br>เริ่มทริป → คืนรถ → เห็นยอดจริง → แสดง QR → ผู้ใช้สแกนและยืนยันการจ่ายเอง (จำลอง)</div><div class="callout warning">${ic('info')}<p><strong>ข้อจำกัดเมื่อนำไปใช้จริง</strong><br>ผู้ให้บริการต้องตรวจสอบสิทธิ์/รับความเสี่ยงการค้างชำระ และระงับการเช่าครั้งใหม่จนกว่าชำระยอดเดิมครบ</p></div><div class="demo-note">ไม่มีการสร้าง QR จริงในหน้านี้ เพราะ QR จะปรากฏหลังจบทริปตามยอดจริง</div>`}
+<div class="steps-mini"><b class="active"></b><b class="active"></b><b class="active"></b><b></b><b></b></div></div>${bottom('finishSetup','ยืนยันช่องทางและดำเนินการต่อ','หน้าถัดไปจะแสดงรายละเอียดการเช่าก่อนเริ่มทริป')}`}
+function renderConfirm(){return `${head('ยืนยันการเช่า',s.method==='wallet'?2:4,'STANDARD BIKE')}<div class="screen-body padded"><p class="section-overline">STEP ${s.method==='wallet'?'3':'4'} / CONFIRM RIDE</p><h2>พร้อมเริ่มปั่นหรือยัง?</h2><p class="subtext">ตรวจสอบข้อมูลจักรยานและค่าใช้จ่ายก่อนเริ่ม</p><div class="bike-detail"><div class="bike-drawing">${bikeSvg()}</div><div><h3>Anywheel Standard Bicycle</h3><p>Bike ID: AW-0287</p><span class="chip">พร้อมใช้ · จุดจอด A</span></div></div>
+<div class="card"><div class="line-row between"><div><span class="info-label">อัตราค่าเช่าจำลอง</span><div class="price">฿10 <small>/ 30 นาที</small></div></div><span class="symbol">${ic('clock')}</span></div><div class="divider" style="margin:12px 0"></div>
+${l('วิธีชำระเงิน',pmethod())}${l('ยอดเงิน Wallet ปัจจุบัน',money(WALLETI))}${l('ขั้นตอนชำระ',s.method==='wallet'?'หัก Wallet เมื่อจบทริป (จำลอง)':s.payChannel==='promptpay'?'แสดง QR ยอดจริงหลังจบทริป':'ตัดบัตรจำลองหลังจบทริป')}</div>
+<div class="callout">${ic('info')}<p><strong>รู้ค่าใช้จ่ายก่อนเริ่ม</strong><br>ต้นแบบสมมติว่าคิด 10 บาทต่อช่วง 30 นาที และปัดจำนวนช่วงขึ้นเมื่อใช้เกิน โดยยังต้องยืนยันเงื่อนไขจริงก่อนนำไปใช้</p></div>
+<div class="steps-mini"><b class="active"></b><b class="active"></b><b class="active"></b><b class="active"></b><b></b></div></div>${bottom('beginRide',`เริ่มทริปด้วย ${pmethod()}`,'ระบบจะจำลองการปลดล็อกจักรยานให้โดยอัตโนมัติ')}`}
+function renderRide(){return `${head('กำลังใช้จักรยาน',4,'SIMULATED RIDE')}<div class="screen-body"><div class="ride-reward"><div class="ride-reward-top"><div class="reward-kicker">ทริปของฉัน · กำลังใช้งาน</div><div class="reward-time">${String(s.minute).padStart(2,'0')}:00 <span>นาที</span></div><p>Standard Bicycle · AW-0287</p></div><div class="ride-reward-bottom"><div class="reward-balance">ค่าบริการคาดการณ์ของทริป</div><div class="reward-cost">${money(fare())}</div><div class="reward-method">วิธีชำระเงิน <span>${pmethod()}</span></div></div></div><div class="padded" style="padding-top:17px"><div class="segment-label">เลือกสถานการณ์เพื่อทดลองค่าบริการ</div><div class="selector"><button class="${s.minute===18?'active':''}" type="button" data-action="minute" data-value="18" aria-pressed="${s.minute===18}">18 นาที · 1 ช่วง</button><button class="${s.minute===42?'active':''}" type="button" data-action="minute" data-value="42" aria-pressed="${s.minute===42}">42 นาที · 2 ช่วง</button></div>
+<div class="card" style="margin-top:12px"><div class="line-row">${ic('pin')}<div class="grow"><h3>จุดคืนตัวอย่าง B</h3><p>โปรดนำจักรยานกลับไปจุดคืนที่กำหนด (สถานการณ์จำลอง)</p></div><span class="chip gray">DEMO</span></div></div><div class="callout warning">${ic('lock')}<p><strong style="color:#866720">ก่อนจบทริป</strong><br>ในสถานการณ์จริง ต้องจอดและล็อกจักรยานตามข้อกำหนดของบริการก่อนยืนยันสิ้นสุดทริป</p></div></div></div>${bottom('openEnd','ฉันล็อกรถแล้ว · สิ้นสุดทริป','กดเพื่อทดลองหน้าต่างยืนยันการคืนรถ')}`}
+function mockQR(){let t='<svg class="qr-demo-art" viewBox="0 0 160 160" aria-label="ลาย QR ตัวอย่างที่สแกนจ่ายเงินจริงไม่ได้" role="img"><rect width="160" height="160" fill="white"/>';let seed=83;for(let y=1;y<32;y++){for(let x=1;x<32;x++){const corner=(x<9&&y<9)||(x>23&&y<9)||(x<9&&y>23);if(corner)continue;seed=(seed*73+41)%997;if(seed%5<2)t+=`<rect x="${x*5}" y="${y*5}" width="5" height="5" fill="#14252a"/>`;}}for(const [x,y] of [[5,5],[120,5],[5,120]]){t+=`<rect x="${x}" y="${y}" width="35" height="35" fill="#14252a"/><rect x="${x+5}" y="${y+5}" width="25" height="25" fill="white"/><rect x="${x+10}" y="${y+10}" width="15" height="15" fill="#14252a"/>`;}return t+'<rect x="43" y="68" width="75" height="24" rx="5" fill="white"/><text x="80" y="84" text-anchor="middle" font-size="13" font-weight="900" fill="#08885c">DEMO ONLY</text></svg>'}
+function renderQR(){return `<div class="screen-head"><span class="head-spacer" aria-hidden="true"></span><div class="head-title">ชำระค่าทริป</div><div class="proto-tag">QR DEMO</div></div><div class="screen-body padded"><p class="section-overline">TRIP ENDED · PAYMENT PENDING</p><h2>จบทริปแล้ว<br>ชำระตามยอดจริง</h2><p class="subtext">คุณคืนรถเรียบร้อยแล้ว กรุณาชำระค่าทริปด้วย PromptPay ก่อนเช่าครั้งต่อไป</p><div class="pay-due"><small>ค่าเช่าจักรยานธรรมดา · ${s.minute} นาที</small><strong>${money(fare())}</strong><small>ไม่มีการเติมเครดิตเข้า Wallet</small></div><div class="qr-card">${mockQR()}<strong style="color:var(--ink);font-size:13px">PromptPay QR จำลอง</strong><p class="qr-sub">ในระบบจริง ผู้ใช้สแกนผ่านแอปธนาคารและรอระบบยืนยันรายการ<br><b>QR ภาพนี้สแกนจ่ายไม่ได้ และไม่มีการรับเงินจริง</b></p></div><div class="callout warning">${ic('info')}<p><strong>หากยังไม่ชำระ</strong><br>สถานะจะเป็น “รอชำระเงิน” และการเช่าทริปใหม่ต้องถูกระงับจนกว่าจะชำระครบ (แนวคิดที่ต้องพัฒนาระบบจริง)</p></div><div class="steps-mini"><b class="active"></b><b class="active"></b><b class="active"></b><b class="active"></b><b class="active"></b></div></div>${bottom('mockPaySuccess','จำลองการชำระเงินสำเร็จ','เพียงจำลองผลจากธนาคาร ไม่ใช่ธุรกรรมจริง')}`}
+function renderDone(){const f=fare(),newBalance=s.method==='wallet'?WALLETI-f:WALLETI;return `${head('ใบเสร็จทริป',0,'DEMO RECEIPT')}<div class="screen-body"><div class="done-head"><div class="success-circle">${ic('check','xl')}</div><h2>จบทริปเรียบร้อย!</h2><p>คืนจักรยานและชำระเงินจำลองสำเร็จ</p></div><div class="padded" style="padding-top:0"><div class="receipt"><div class="line-row between"><span class="chip">TRIP COMPLETED</span><span class="info-label">DEMO #AW0287</span></div><div class="divider"></div>${l('ประเภทจักรยาน','Standard Bicycle')}${l('ระยะเวลา',`${s.minute} นาที`)}${l('อัตราจำลอง','฿10 / 30 นาที')}${l('วิธีชำระเงิน',pmethod())}${l('ยอด Wallet ก่อนทริป',money(WALLETI))}${l('ยอด Wallet หลังทริป',money(newBalance))}
+<div class="total-row"><span style="font-size:13px;color:var(--ink);font-weight:850">ยอดชำระในทริปนี้</span><strong>${money(f)}</strong></div></div>
+<div class="callout">${ic('check')}<p><strong>${s.method==='perride'?'ไม่ต้องเติม Wallet ล่วงหน้า':'ใช้ Wallet ที่มีอยู่แล้ว'}</strong><br>${s.method==='perride'?s.payChannel==='promptpay'?`ระบบจำลองว่าผู้ใช้ยืนยันจ่าย PromptPay QR หลังคืนรถ ${money(f)} ไม่ได้ใช้เงินใน Wallet ซึ่งยังคง ${money(WALLETI)}`:`ระบบจำลองว่าตัดเงิน ${money(f)} ผ่านบัตรทดสอบโดยตรง ยอด Wallet จึงยังอยู่ที่ ${money(WALLETI)}`:`ระบบจำลองว่าหัก ${money(f)} จาก Wallet จึงเหลือ ${money(newBalance)}`}</p></div>
+<div class="demo-note">ใบเสร็จและยอดที่แสดงเป็นข้อมูลจำลองเท่านั้น ไม่มีการทำธุรกรรมจริง และไม่ใช่ภาพหน้าจอจากระบบ Anywheel ปัจจุบัน</div></div></div><footer class="buttonbar"><button type="button" class="primary-btn" data-action="restart">${ic('refresh')} ทดลองอีกครั้ง</button><div class="helper">เปรียบเทียบ Pay Per Ride กับ Wallet ได้ด้วยการเริ่มใหม่</div></footer>`}
+function render(){
+ status.className='status'+(s.page===0||s.page===1?' dark':'');
+ document.getElementById('clock').textContent=s.page===0?'16:22':s.page===1?'16:27':'16:29';
+ document.getElementById('status-side').innerHTML=s.page===0?'<path d="M2 9.7 18 1.4 13 18 9.8 11.4z"/>':'<path d="M14.8 1.5a7.9 7.9 0 1 0 6.1 13.2A8.5 8.5 0 0 1 14.8 1.5z"/>';
+ if(s.page===0)el.innerHTML=renderHome();
+ if(s.page===1)el.innerHTML=renderScanner();
+ if(s.page===2)el.innerHTML=renderMethod();
+ if(s.page===3)el.innerHTML=renderSetup();
+ if(s.page===4)el.innerHTML=renderSetupDetail();
+ if(s.page===5)el.innerHTML=renderConfirm();
+ if(s.page===6)el.innerHTML=renderRide();
+ if(s.page===7)el.innerHTML=renderQR();
+ if(s.page===8)el.innerHTML=renderDone();
+ modal.innerHTML=s.modal?`<div class="modal-scrim"><section class="sheet" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="sheet-handle"></div><div class="symbol" style="margin-bottom:14px">${ic('lock')}</div><h2 id="modal-title">ยืนยันการคืนรถ</h2><p>คุณได้จอดและล็อกจักรยานที่จุดคืนตัวอย่าง B แล้วใช่ไหม?<br>ระบบจะคำนวณค่าบริการ ${money(fare())}${s.method==='perride'&&s.payChannel==='promptpay'?' และแสดง QR จำลองเพื่อชำระหลังจบทริป':' เมื่อจบทริป'} </p><div class="sheet-actions"><button type="button" class="primary-btn" data-action="complete">${ic('check')} ยืนยันจบทริปจำลอง</button><button type="button" class="secondary-btn" data-action="cancelModal">ย้อนกลับไปตรวจสอบ</button></div></section></div>`:'';
+ const steps=document.getElementById('steps');steps.innerHTML=screens.map((v,i)=>`<li data-n="${i+1}" class="${i===s.page?'current':''}">${v}</li>`).join('');
+ el.querySelector('.screen-body')?.scrollTo(0,0);
+}
+function move(n){s.page=n;s.modal=false;render()}
+function updateBanner(){const t=document.getElementById('hero-track');if(t)t.style.transform=`translateX(-${s.banner*100}%)`;document.querySelectorAll('.hero-dot').forEach((d,i)=>d.classList.toggle('active',i===s.banner))}
+function notify(text){s.modal=true;modal.innerHTML=`<div class="modal-scrim"><section class="sheet" role="dialog" aria-modal="true" aria-labelledby="notice-title"><div class="sheet-handle"></div><div class="symbol" style="margin-bottom:14px">${ic('info')}</div><h2 id="notice-title">โหมด Prototype</h2><p>${text}</p><div class="sheet-actions"><button class="primary-btn" type="button" data-action="cancelModal">เข้าใจแล้ว</button></div></section></div>`}
+function reset(){s={page:0,method:null,payChannel:null,card:'visa',minute:18,modal:false,completed:false,qrPaid:false,fromScreen:0,banner:0,torch:false};render()}
+function handler(e){const b=e.target.closest('[data-action]');if(!b)return;const a=b.dataset.action;
+ if(a==='start'){move(1);return}
+ if(a==='scanComplete'){move(2);return}
+ if(a==='scannerHelp'){notify('สแกน QR Code ที่จักรยานธรรมดา ในต้นแบบนี้แตะปุ่มสีเขียวด้านล่างเพื่อจำลองการสแกน ไม่มีการเปิดกล้องจริง');return}
+ if(a==='torch'){s.torch=!s.torch;render();return}
+ if(a==='bannerNext'){s.banner=(s.banner+1)%2;updateBanner();return}
+ if(a==='bannerDot'){s.banner=Number(b.dataset.value);updateBanner();return}
+ if(a==='back'){move(Number(b.dataset.to));return}
+ if(a==='home'){move(0);return}
+ if(a==='method'){s.method=b.dataset.value;s.payChannel=null;render();return}
+ if(a==='continueMethod'){if(!s.method){notify('กรุณาเลือกวิธีชำระเงินก่อนดำเนินการต่อ');return}move(s.method==='wallet'?5:3);return}
+ if(a==='channel'){s.payChannel=b.dataset.value;render();return}
+ if(a==='channelGo'){s.payChannel=b.dataset.value;move(4);return}
+ if(a==='continueSetup'){if(!s.payChannel){notify('กรุณาเลือกบัตรหรือ PromptPay QR ก่อนดำเนินการต่อ');return}move(4);return}
+ if(a==='card'){s.card=b.dataset.value;render();return}
+ if(a==='finishSetup'){if(!s.payChannel){notify('กรุณาเลือกบัตรหรือ PromptPay QR ก่อนดำเนินการต่อ');return}move(5);return}
+ if(a==='beginRide'){s.minute=18;move(6);return}
+ if(a==='minute'){s.minute=Number(b.dataset.value);render();return}
+ if(a==='openEnd'){s.modal=true;render();return}
+ if(a==='complete'){s.completed=true;move(s.method==='perride'&&s.payChannel==='promptpay'?7:8);return}
+ if(a==='mockPaySuccess'){s.qrPaid=true;move(8);return}
+ if(a==='cancelModal'){s.modal=false;render();return}
+ if(a==='restart'){reset();return}
+ if(a==='walletNotice'){notify('ยอด Wallet ฿44.00 เป็นข้อมูลจำลอง คุณสามารถเลือกใช้ Wallet ในหน้าชำระเงินได้');return}
+ if(a==='demoNotice'){notify('ฟังก์ชันนี้อยู่นอกขอบเขตงานต้นแบบ ซึ่งออกแบบเฉพาะ Payment Flow กรุณาเลือกสแกนเพื่อปั่น');return}
+ }
+ // Allow banners to swipe horizontally, like an app carousel, while preserving vertical scrolling.
+ let swipeX=null;
+ const shell=document.querySelector('.phone-shell');
+ shell.addEventListener('pointerdown',(e)=>{if(e.target.closest('.home-hero')&&!e.target.closest('button'))swipeX=e.clientX});
+ shell.addEventListener('pointerup',(e)=>{if(swipeX===null)return;const delta=e.clientX-swipeX;swipeX=null;if(s.page===0&&Math.abs(delta)>35){s.banner=(s.banner+(delta<0?1:-1)+2)%2;updateBanner()}});
+ // Rotate only when the home banner is visible; tapping dots or swiping always works too.
+ setInterval(()=>{if(s.page===0&&!document.hidden){s.banner=(s.banner+1)%2;updateBanner()}},4000);
+ shell.addEventListener('click',handler);
+ document.getElementById('reset-desktop').addEventListener('click',reset);
+ render();
+ window.__anywheelDemo={getState:()=>({...s}),goHome:reset};
+})();
+</script>
+<script id="desktop-phone-fit">
+(function(){
+  const phone = document.querySelector('.phone-shell');
+  if (!phone) return;
+  function fitPhoneToViewport(){
+    // Keep native, readable sizing for real mobile-width screens.
+    if(window.matchMedia('(max-width:760px)').matches){
+      phone.style.zoom='';
+      return;
+    }
+    // Keep the full 420 x 892 px virtual device usable and centered on laptops.
+    // CSS zoom changes layout dimensions too, so the page does not get cropped.
+    const availableHeight=Math.max(310,window.innerHeight-48);
+    const availableWidth=Math.max(240,window.innerWidth-48);
+    const scale=Math.min(1, availableHeight/892, availableWidth/420);
+    phone.style.zoom=String(Math.max(.3,scale));
+  }
+  window.addEventListener('resize',fitPhoneToViewport,{passive:true});
+  fitPhoneToViewport();
+})();
+</script>
+</body></html>
