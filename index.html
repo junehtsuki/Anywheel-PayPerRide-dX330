@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#19cc67">
+  <meta name="theme-color" content="#101820">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="description" content="Clickable UX prototype — Anywheel Pay Per Ride concept for dX330, standard bicycles only.">
   <title>Anywheel · Pay Per Ride Concept Prototype</title>
 
@@ -223,6 +225,24 @@ body:has(.hero-dot:nth-child(1).active) .home-wallet-strip {
     #101820 0 21px,
     #ffffff 21px 100%
   );
+}
+
+  
+/* iPhone Home Screen Web App — Safe Area */
+@media screen and (max-width: 760px) and (display-mode: standalone) {
+  html,
+  body {
+    background-color: #101820;
+  }
+
+  .phone-shell {
+    padding-top: env(safe-area-inset-top, 0px);
+    background-color: #101820;
+  }
+
+  .screen-root {
+    background-color: #ffffff;
+  }
 }
 
   </style>
