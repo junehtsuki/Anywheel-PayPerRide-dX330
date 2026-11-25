@@ -355,7 +355,13 @@ function render(){
   s.page === 0
     ? (s.banner === 1 ? 'status yellow' : 'status dark')
     : (s.page === 1 ? 'status dark' : 'status');
- document.getElementById('clock').textContent=s.page===0?'16:22':s.page===1?'16:27':'16:29';
+
+document.getElementById('clock').textContent =
+  new Date().toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  });
  document.getElementById('status-side').innerHTML=s.page===0?'<path d="M2 9.7 18 1.4 13 18 9.8 11.4z"/>':'<path d="M14.8 1.5a7.9 7.9 0 1 0 6.1 13.2A8.5 8.5 0 0 1 14.8 1.5z"/>';
  if(s.page===0)el.innerHTML=renderHome();
  if(s.page===1)el.innerHTML=renderScanner();
@@ -407,6 +413,19 @@ function handler(e){const b=e.target.closest('[data-action]');if(!b)return;const
  shell.addEventListener('pointerup',(e)=>{if(swipeX===null)return;const delta=e.clientX-swipeX;swipeX=null;if(s.page===0&&Math.abs(delta)>35){s.banner=(s.banner+(delta<0?1:-1)+2)%2;updateBanner()}});
  // Rotate only when the home banner is visible; tapping dots or swiping always works too.
  setInterval(()=>{if(s.page===0&&!document.hidden){s.banner=(s.banner+1)%2;updateBanner()}},4000);
+
+setInterval(() => {
+  const clock = document.getElementById('clock');
+
+  if (clock) {
+    clock.textContent = new Date().toLocaleTimeString('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    });
+  }
+}, 15000);
+
  shell.addEventListener('click',handler);
  document.getElementById('reset-desktop').addEventListener('click',reset);
  render();
