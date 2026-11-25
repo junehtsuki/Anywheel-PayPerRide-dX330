@@ -6,6 +6,30 @@
   <meta name="theme-color" content="#19cc67">
   <meta name="description" content="Clickable UX prototype — Anywheel Pay Per Ride concept for dX330, standard bicycles only.">
   <title>Anywheel · Pay Per Ride Concept Prototype</title>
+
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="assets/anywheel-touch-icon-180.png?v=2"
+>
+
+<link
+  rel="icon"
+  type="image/png"
+  sizes="512x512"
+  href="assets/anywheel-touch-icon.png?v=2"
+>
+
+<meta
+  name="apple-mobile-web-app-title"
+  content="Anywheel"
+>
+
+<meta
+  name="application-name"
+  content="Anywheel"
+>
+
   <style>
     :root{--green:#19cc67;--deep:#08b85c;--mint:#e8faef;--ink:#343c76;--text:#2c355f;--muted:#858ba0;--line:#e5e8f2;--surface:#f8f9fc;--dark:#101820;--radius:20px;--shadow:0 14px 34px rgba(25,45,70,.10)}
     *,*::before,*::after{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Thai','Thonburi','Noto Sans Thai',system-ui,'Leelawadee UI',Tahoma,Arial,sans-serif;color:var(--text)}
@@ -251,7 +275,14 @@ function mapSVG(){return `<svg viewBox="0 0 370 210" preserveAspectRatio="xMidYM
 function renderHome(){return `<div class="screen-body" id="home-scroll">
 <div class="home-hero" aria-label="แบนเนอร์แนะนำของ Anywheel"><div class="hero-track" id="hero-track" style="transform:translateX(-${s.banner*100}%)">
   <div class="hero-slide"><img class="hero-photo" src="assets/home_pass.jpg" alt="Save more with Anywheel Pass จากภาพหน้าจออ้างอิง"/></div>
-  <div class="hero-slide hero-second" aria-label="แบนเนอร์จำลองลำดับที่สอง"><span class="brand-logo">anywheel</span><strong>เดินทางได้อย่างอิสระ<br>ด้วยจักรยานธรรมดา</strong><p>ค้นหารถ · สแกน QR · เริ่มทริปได้ง่าย ๆ</p><span class="hero-cycle">${ic('bicycle','xl')}</span></div>
+  
+<div class="hero-slide">
+  <img
+    class="hero-photo"
+    src="assets/home_sponsor_yellow.jpg"
+    alt="แบนเนอร์ Sponsor × Anywheel Bike Sharing"
+  />
+</div>
 </div><button class="hero-next" data-action="bannerNext" type="button" aria-label="ดูแบนเนอร์ถัดไป">${ic('arrow-right','sm')}</button><div class="hero-dots"><button class="hero-dot ${s.banner===0?'active':''}" data-action="bannerDot" data-value="0" aria-label="แบนเนอร์ที่ 1"></button><button class="hero-dot ${s.banner===1?'active':''}" data-action="bannerDot" data-value="1" aria-label="แบนเนอร์ที่ 2"></button></div></div>
 <div class="home-wallet-strip" aria-label="ข้อมูลบัญชี"><div class="wallet-strip-card"><div class="label">พาส All Ride</div><div class="value"><small>ซื้อ</small>${ic('bicycle')}</div></div><button type="button" class="wallet-strip-card" style="text-align:left" data-action="walletNotice"><div class="label">ยอดเครดิตคงเหลือ</div><div class="value">฿44.00 ${ic('wallet')}</div></button><div class="wallet-strip-card"><div class="label">รีวอร์ดพอยท์</div><div class="value">20 pts ${ic('sparkle')}</div></div></div>
 <div class="home-space"><div class="quick-actions">
